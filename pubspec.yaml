@@ -1,0 +1,49 @@
+name: weather_app
+description: "Flutter take-home: search a place, see current weather and a 7-day forecast (Open-Meteo)."
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  # 已验证的工具链：Flutter 3.41.0 stable（44a626f4f0）/ Dart 3.11.0。
+  # 上限锁在 3.41.x：3.47+ 把 Material/Cupertino 拆成独立包并弃用 flutter/material.dart，需要另行迁移。
+  sdk: ^3.11.0
+  flutter: ">=3.41.0 <3.42.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  http: ^1.6.0
+  intl: ^0.20.3
+  shared_preferences: ^2.5.6
+  url_launcher: ^6.3.3
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^6.0.0
+  integration_test:
+    sdk: flutter
+  fake_async: ^1.3.3
+  shared_preferences_platform_interface: ^2.4.2
+
+flutter:
+  uses-material-design: true
+
+  # Flutter 3.41 默认用 CocoaPods 集成 iOS 插件；这里按项目开启 Swift Package Manager
+  # （项目级设置优先于全局 `flutter config`），Mac 上无需安装 CocoaPods、也不用改全局配置。
+  # 首次在 Mac 上构建时，Flutter 自带的迁移会把 FlutterGeneratedPluginSwiftPackage 写入 Runner.xcodeproj。
+  config:
+    enable-swift-package-manager: true
+  # 打包字体而不是用系统字体：保证 iOS（SF）与 Android（Roboto）排版、数字宽度一致。
+  fonts:
+    - family: Inter
+      fonts:
+        - asset: assets/fonts/Inter-Regular.ttf
+        - asset: assets/fonts/Inter-Medium.ttf
+          weight: 500
+        - asset: assets/fonts/Inter-SemiBold.ttf
+          weight: 600
+    - family: InterDisplay
+      fonts:
+        - asset: assets/fonts/InterDisplay-Light.ttf
+          weight: 300
